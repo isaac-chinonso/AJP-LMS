@@ -21,6 +21,7 @@ class PageController extends Controller
 
     public function dashboard()
     {
+        
         $data['department'] = Department::count();
         $data['course'] = Course::count();
         $data['student'] = User::where('role_id', 3)->count();
@@ -64,7 +65,8 @@ class PageController extends Controller
 
     public function coursedetails($id)
     {
-        $data['coursedetails'] = Course::where('id', $id)->where('status', 1)->get();
+        $data['coursedetails'] = Course_topic::where('course_id', $id)->get();
+        $data['course'] = Course::where('id', $id)->first();
         return view('admin.coursedetails', $data);
     }
 

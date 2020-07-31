@@ -19,6 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('title');
             $table->string('code');
             $table->string('unit');
+            $table->string('slug')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

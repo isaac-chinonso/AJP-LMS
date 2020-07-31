@@ -63,8 +63,12 @@ Admin Course || Ajayi Polytechnic LMS
                                     <input type="text" class="form-control" name="code" placeholder="Enter Course Code">
                                 </div>
                                 <div class="form-group">
-                                    <label>Course Unit</label>
-                                    <input type="text" class="form-control" name="unit" placeholder="Enter Course Unit">
+                                    <label>level</label>
+                                    <select class="form-control" name="unit">
+                                        <option selected disabled>Select Course Level</option>
+                                        <option value="ND 1">ND 1</option>
+                                        <option value="ND 2">ND 2</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -102,7 +106,7 @@ Admin Course || Ajayi Polytechnic LMS
                                         <th>Department</th>
                                         <th>Title</th>
                                         <th>Code</th>
-                                        <th>Unit</th>
+                                        <th>Level</th>
                                         <th>Created_at</th>
                                         <th>Action</th>
                                     </tr>
@@ -121,7 +125,7 @@ Admin Course || Ajayi Polytechnic LMS
                                                     Action
                                                 </button>
                                                 <div class="dropdown-menu lightSpeedIn">
-                                                <a class="dropdown-item" href="#"><i class="icon-plus"></i> Course Topic</a>
+                                                    <a class="dropdown-item" href="{{ route('coursedetails', $course->id) }}"><i class="icon-plus"></i> Course Topic</a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal1{{ $course->id }}"><i class="icon-note"></i> Edit Course</a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete{{ $course->id }}"><i class="icon-trash"></i> Delete Course</a>
                                                 </div>
@@ -135,20 +139,35 @@ Admin Course || Ajayi Polytechnic LMS
                                                                 <h4 class="modal-title" id="myModalLabel">Edit Course</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label>Select Department</label>
-                                                                <select class="form-control" name="department_id">
-                                                                    <option value="{{ $course->department_id }}" selected>{{ $course->department->title }}</option>
-                                                                    <option disabled>Select New Department</option>
-                                                                    @foreach($department as $dept)
-                                                                    <option value="{{ $dept->id }}">{{ $dept->title }}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">Add New Course</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="form-group">
-                                                                    <label>Department Title</label>
+                                                                    <label>Select Department</label>
+                                                                    <select class="form-control" name="department_id">
+                                                                        <option  selected value="{{ $course->department->id }}">{{ $course->department->title }}</option>
+                                                                        @foreach($department as $dept)
+                                                                        <option value="{{ $dept->id }}">{{ $dept->title }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Course Title</label>
                                                                     <input type="text" class="form-control" name="title" value="{{ $course->title }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Course Code</label>
+                                                                    <input type="text" class="form-control" name="code" value="{{ $course->code }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>level</label>
+                                                                    <select class="form-control" name="unit">
+                                                                        <option selected value="{{ $course->unit }}">{{ $course->unit }}</option><hr>
+                                                                        <option value="ND 1">ND 1</option>
+                                                                        <option value="ND 2">ND 2</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">

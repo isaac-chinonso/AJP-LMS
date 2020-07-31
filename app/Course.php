@@ -20,4 +20,13 @@ class Course extends Model
     {
     	return $this->hasMany('App\Course_assignment');
     }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ],
+        ];
+    }
 }

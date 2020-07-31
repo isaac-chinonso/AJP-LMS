@@ -49,6 +49,8 @@ class PageController extends Controller
         $this->validate($request, array(
             'department_id' => 'required',
             'title' => 'required',
+            'code' => 'required',
+            'unit' => 'required',
         ));
 
         $course = Course::find($id);
@@ -56,6 +58,10 @@ class PageController extends Controller
         $course->department_id = $request->input('department_id');
 
         $course->title = $request->input('title');
+
+        $course->code = $request->input('code');
+        
+        $course->unit = $request->input('unit');
 
         $course->save();
 

@@ -84,4 +84,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'student', 'before' => 'studen
 
     Route::get('/dashboard', 'Student\PageController@dashboard')->name('studentdashboard');
 
+    Route::get('/biodata', 'Student\PageController@biodata')->name('studentbiodata');
+
+    Route::get('/courses', 'Student\PageController@courses')->name('studentcourses');
+
+    Route::get('/course-topics/{id}', 'Student\PageController@topics')->name('studentcoursetopics');
+
+    Route::get('/course-announcement', 'Student\PageController@announcement')->name('studentannouncement');
+
 });

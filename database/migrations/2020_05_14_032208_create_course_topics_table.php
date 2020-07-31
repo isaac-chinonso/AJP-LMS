@@ -19,6 +19,7 @@ class CreateCourseTopicsTable extends Migration
             $table->string('title');
             $table->text('abstract')->nullable();
             $table->string('content')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

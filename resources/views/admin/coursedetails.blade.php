@@ -1,6 +1,6 @@
 @extends('layout.master1')
 @section('title')
-Admin Departmental Courses || Ajayi Polytechnic LMS
+Admin Course Topics || Ajayi Polytechnic LMS
 @endsection
 
 @section('content')
@@ -30,7 +30,7 @@ Admin Departmental Courses || Ajayi Polytechnic LMS
                 <div class="d-flex justify-content-end align-items-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Admin</a></li>
-                        <li class="breadcrumb-item active">Departmental Courses</li>
+                        <li class="breadcrumb-item active">{{ $course->department->title }} Courses</li>
                     </ol>
                 </div>
             </div>
@@ -49,25 +49,37 @@ Admin Departmental Courses || Ajayi Polytechnic LMS
                 @include('include.error')
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Departmental Courses</h4>
+                        <h4 class="card-title">{{ $course->department->title }} Course Topics</h4>
                         <div class="table-responsive">
                             <table id="myTable" class="table table-bordered table-striped">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>Department</th>
-                                        <th>Course Title</th>
+                                        <th>Course</th>
+                                        <th>Topic</th>
+                                        <th>Abstract</th>
+                                        <th>Content</th>
                                         <th>Created_at</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($coursedetails as $course)
+                                    @foreach($coursedetails as $topics)
                                     <tr>
-                                        <td>{{ $course->department->title }}</td>
-                                        <td>{{ $course->title }}</td>
-                                        <td>{{ date('F d, Y', strtotime($course->created_at)) }}</td>
+                                        <td>{{ $topics->course->title }}</td>
+                                        <td>{{ $topics->title }}</td>
+                                        <td>{{ $topics->abstract }}</td>
+                                        <td><a href="../upload/coursetopic/{{ $topics->content }}" target="_blank">{{ $topics->content }}</a></td>
+                                        <td>{{ date('F d, Y', strtotime($topics->created_at)) }}</td>
                                         <td>
-                                            
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Action
+                                                </button>
+                                                <div class="dropdown-menu lightSpeedIn">
+                                                    <a class="dropdown-item" href="#"><i class="icon-note"></i> Edit Topic</a>
+                                                    <a class="dropdown-item" href="#"><i class="icon-trash"></i> Delete Topic</a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
